@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-coal: #17120f;
+  --color-char: #2a221d;
+  --color-ash: #3a302a;
+  --color-smoke: #a8998c;
+  --color-ember: #ff5a1f;
+  --color-ember-dark: #e04410;
+  --color-mustard: #ffc23d;
+  --color-cream: #fff5e8;
+  --color-leaf: #5cb85c;
+
+  --font-body: "Cairo", system-ui, sans-serif;
+  --font-display-ar: "Lalezar", "Cairo", sans-serif;
+  --font-display-en: "Anton", "Cairo", sans-serif;
+}
+
+html {
+  font-family: var(--font-body);
+  background: var(--color-coal);
+  color: var(--color-cream);
+  -webkit-tap-highlight-color: transparent;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+.font-display {
+  font-family: var(--font-display-ar);
+  letter-spacing: 0;
+}
+html[lang="en"] .font-display {
+  font-family: var(--font-display-en);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ember-glow {
+  background:
+    radial-gradient(60% 50% at 50% 100%, rgba(255, 90, 31, 0.35), transparent 70%),
+    radial-gradient(40% 40% at 80% 20%, rgba(255, 194, 61, 0.12), transparent 70%);
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-rise { animation: rise 0.45s ease-out both; }
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+  50% { transform: scale(1.06) rotate(2deg); opacity: 0.9; }
+}
+.animate-flicker { animation: flicker 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
+
+@keyframes slide-in-end {
+  from { transform: translateX(var(--slide-from, 100%)); }
+  to { transform: none; }
+}
+html[dir="rtl"] { --slide-from: -100%; }
+.animate-drawer { animation: slide-in-end 0.3s ease-out both; }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.6); }
+  100% { box-shadow: 0 0 0 14px rgba(255, 90, 31, 0); }
+}
+.pulse-ring { animation: pulse-ring 1.5s ease-out infinite; }
+
+input, textarea, select { font: inherit; }
